@@ -6,6 +6,8 @@ using TMPro;
 
 public class UIInventoryItemSlot : MonoBehaviour
 {
+    public Image bg;
+
     [SerializeField]
     private Image icon;
 

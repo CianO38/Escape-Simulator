@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42741efcfef1c464a94e59d1a9e7e497, type: 3}
   m_Name: Key
   m_EditorClassIdentifier: 
-  id: InventoryItem_Key
+  id: 1
   displayName: Key
   icon: {fileID: 21300000, guid: f3a00179d507040c79b97a91d5bee1ad, type: 3}
   prefab: {fileID: 1776792253175467367, guid: 76b2bac77daaf48dfbda1bb19f21301f, type: 3}
+  highlightPrefab: {fileID: 3785162089485378388, guid: 0dbb270ae18bc4915abbf3d0ce760e47, type: 3}

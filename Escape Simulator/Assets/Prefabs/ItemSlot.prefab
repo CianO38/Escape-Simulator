@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c895094e2c5e409aad3309305c721dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bg: {fileID: 1171702224811715537}
   icon: {fileID: 491662099804858359}
   label: {fileID: 8456589290205097829}
   stackObj: {fileID: 1749251252250885504}

@@ -5,13 +5,6 @@ public class PlayerInteraction : MonoBehaviour
 {
     public Camera cam;
 
-    public float throwForce;
-    public Transform holdParent;
-    public GameObject currentHeldObject;
-
-    public Transform examineParent;
-    public bool isExamining = false;
-
     public float interactionDistance;
 
     public TMPro.TextMeshProUGUI interactionText;
@@ -47,40 +40,6 @@ public class PlayerInteraction : MonoBehaviour
             interactionText.text = "";
             interactionHoldGO.SetActive(false);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            Examine();
-
-        if (Input.GetKeyDown(KeyCode.Q) && currentHeldObject != null)
-            ThrowObject();
-    }
-
-    void ThrowObject()
-    {
-        currentHeldObject.GetComponent<Interactable>().canBeInteractedWith = true;
-        currentHeldObject.transform.SetParent(null);
-        currentHeldObject.GetComponent<Rigidbody>().isKinematic = false;
-        currentHeldObject.GetComponent<Rigidbody>().AddForce(holdParent.forward * throwForce);
-        currentHeldObject = null;
-    }
-
-    void Examine()
-    {
-        isExamining = !isExamining;
-
-        switch (isExamining)
-        {
-            case true:
-                currentHeldObject.transform.SetParent(examineParent);
-                currentHeldObject.transform.localPosition = Vector3.Lerp(examineParent.position, Vector3.zero, 1f);
-                currentHeldObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                break;
-            case false:
-                currentHeldObject.transform.SetParent(holdParent);
-                currentHeldObject.transform.localPosition = Vector3.Lerp(currentHeldObject.transform.localPosition, Vector3.zero, 1f);
-                currentHeldObject.transform.localRotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-                break;
-        }
     }
 
     void HandleInteraction(Interactable interactable)
@@ -109,12 +68,6 @@ public class PlayerInteraction : MonoBehaviour
             case Interactable.InteractionType.Pickup:
                 if (Input.GetKeyDown(key))
                 {
-                    //currentHeldObject = interactable.PickupObject();
-                    //currentHeldObject.transform.SetParent(holdParent);
-                    //currentHeldObject.transform.localPosition = Vector3.zero;
-                    //currentHeldObject.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-                    //currentHeldObject.GetComponent<Rigidbody>().isKinematic = true;
-
                     interactable.canBeInteractedWith = false;
                     interactable.Interact();
                 }
@@ -125,3 +78,42 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 }
+
+
+
+//public float throwForce;
+//public Transform holdParent;
+//public GameObject currentHeldObject;
+
+//public Transform examineParent;
+//public bool isExamining = false;
+
+//currentHeldObject = interactable.PickupObject();
+//currentHeldObject.transform.SetParent(holdParent);
+//currentHeldObject.transform.localPosition = Vector3.zero;
+//currentHeldObject.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+//currentHeldObject.GetComponent<Rigidbody>().isKinematic = true;
+
+
+//if (Input.GetKeyDown(KeyCode.Space))
+//    Examine();
+
+
+//void Examine()
+//{
+//    isExamining = !isExamining;
+
+//    switch (isExamining)
+//    {
+//        case true:
+//            currentHeldObject.transform.SetParent(examineParent);
+//            currentHeldObject.transform.localPosition = Vector3.Lerp(examineParent.position, Vector3.zero, 1f);
+//            currentHeldObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+//            break;
+//        case false:
+//            currentHeldObject.transform.SetParent(holdParent);
+//            currentHeldObject.transform.localPosition = Vector3.Lerp(currentHeldObject.transform.localPosition, Vector3.zero, 1f);
+//            currentHeldObject.transform.localRotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+//            break;
+//    }
+//}
